@@ -1,5 +1,6 @@
 import os, html
-OUT='/home/jacinto/Desktop/Curricula/figures'
+ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUT=os.path.join(ROOT, 'figures')
 os.makedirs(OUT, exist_ok=True)
 INK='#123A5C'; GOLD='#C9A227'; TEAL='#1F5A7A'; CREAM='#F7F4EC'; LIGHT='#DCE6F1'; PALE='#FBF7E9'
 GRAY='#555555'; MID='#8A9AA8'; WHITE='#FFFFFF'; GREEN='#2E7D5B'; RED='#A23B3B'; SAND='#E2D3A8'

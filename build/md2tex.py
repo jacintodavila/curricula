@@ -223,7 +223,7 @@ PREAMBLE=r'''
 \fancyfoot[C]{\footnotesize\sffamily\color{grayx}\thepage}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \usepackage{graphicx}
-\graphicspath{{/home/jacinto/Desktop/Curricula/}}
+\graphicspath{{\GRAPHICSPATH}}
 \usepackage{listings}
 \lstdefinestyle{codebox}{basicstyle=\ttfamily\footnotesize,backgroundcolor=\color{pale},frame=single,rulecolor=\color{sand},breaklines=true,columns=fullflexible,keepspaces=true,aboveskip=6pt,belowskip=6pt}
 \usepackage{enumitem}
@@ -279,7 +279,9 @@ def main(src,dst):
     has_fig=any(l.strip().startswith('![') for l in body)
     figlist=r'\clearpage\listoffigures\clearpage' if has_fig else ''
     running=meta.get('running', meta.get('title','Curriculum')).upper()
+    graphicspath=os.path.dirname(os.path.abspath(src)).replace('\\','/') + '/'
     pre=PREAMBLE.replace('\\RUNNING', running.replace('&',r'\&').replace('_',r'\_').replace('%',r'\%').replace('#',r'\#'))
+    pre=pre.replace('\\GRAPHICSPATH', graphicspath)
     tex=pre+titlepage(meta)+r'''
 \frontmatter
 \tableofcontents
